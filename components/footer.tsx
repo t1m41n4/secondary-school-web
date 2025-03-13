@@ -88,7 +88,6 @@ export default function Footer() {
             <p className="text-sm text-gray-400">
               &copy; {new Date().getFullYear()} Keriko Secondary School. All rights reserved.
             </p>
-            <p className="text-sm text-gray-400 mt-2 md:mt-0">Developed by puntimlabs</p>
             <Button
               variant="ghost"
               size="sm"

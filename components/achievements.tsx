@@ -30,8 +30,9 @@ export default function Achievements() {
             </div>
             <h3 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">Global Teacher Prize</h3>
             <p className="text-gray-700 dark:text-gray-300">
-              One of the teachers won the 2019 global teacher prize. This made history as he is the first teacher from
-              Africa to ever win the coveted prize. This is a great milestone not only for our school but for Kenya and
+              One of our teachers won the 2019 global teacher prize.
+              This made history as he is the first from Africa to achieve the coveted prize.
+              This is a great milestone not only for our school but for Kenya and
               Africa at large.
             </p>
           </div>

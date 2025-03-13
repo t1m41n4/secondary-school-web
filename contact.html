@@ -1,4 +1,189 @@
-<!DOCTYPE html><html lang="en"> <head> <meta charset="UTF-8"/> <meta name="viewport" content="width=device-width, initial-scale=1.0"/> <title>Keriko Secondary - Contact Us</title> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous"/> <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&display=swap" rel="stylesheet"/> <link rel="stylesheet" href="css/contact.css"/> <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/> <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head> <body> <div class="menu-btn"><i class="fas fa-bars fa-2x"></i></div><div class="container"> <nav class="main-nav"> <div class="logo"> <a href="index.html"> <img src="icons/school .png" alt="school logo"/><span style="font-size: 18px; letter-spacing: 1px;"> KERIKO</span> <p>SECONDARY</p></a> </div><ul class="main-menu"> <li><a href="index.html">Home</a></li><li><a href="about.html">About-Us</a></li><li><a href="gallery.html">Gallery</a></li><li><a class="active" href="contact.html">Contact-Us</a></li></ul> </nav> <section class="contact"> <div class="overlay"></div><div id="v1"></div><h1 data-aos="fade-left">CONTACT US</h1> </section> <section class="timeline" id="timeline"> <div class="container"> <ul> <li> <div class="content" data-aos="fade-right"> <h3> <i class="fa fa-map-marker"></i>SCHOOL LOCATION </h3> <p> The school is located in Nakuru County, Njoro Sub-County, Lare Division, Keriko Location. </p></div></li><li> <div class="content" data-aos="fade-left"> <h3> <i class="fa fa-phone"></i>PHONE NUMBER </h3> <p> <a href="tel:+254103001600">+254103001600</a> </p></div></li><li> <div class="content" data-aos="fade-right"> <h3> <i class="fa fa-envelope"></i>SCHOOL EMAIL </h3> <p> <a href="mailto:communications@kerikosecondary.com">communications@kerikosecondary.com</a> </p></div></li></ul> </div></section> <section class="contact-form"> <div class="container"> <form action="contact-form-handler.php" method="post"> <h2>Send us a message</h2> <div class="input-box" data-aos="fade-in"> <input type="text" name="name" required="required"/> <span>Full Name</span> </div><div class="input-box" data-aos="fade-in"> <input type="email" name="email" required="required"/> <span>Email</span> </div><div class="input-box" data-aos="fade-in"> <textarea name="message" required="required"></textarea> <span>Type your Message...</span> </div><div class="input-box" data-aos="fade-up"> <input type="submit" value="Send Message"/> </div></form> </div></section> </div><section class="links"> <div class="links-inner"> <ul> <li> <a href="contact.html"> <img src="icons/school .png" alt="school logo"/><span style="font-size: 18px; letter-spacing: 1px; color: #fff;"> <b>KERIKO</b></span> <p style="font-size: 10px; letter-spacing: 5.5px; margin-top: -20px; color: #fff;"><b>SECONDARY</b></p></a> </li><li> <p><img src="icons/phone.png" alt="phone number" id="phone"/>+254103001600</p></li><li> <p><img src="icons/mail.png" alt="school email" id="mail"/>communications@kerikosecondary.com</p></li></ul> <ul> <li><h4>SCHOOL</h4></li><li id="links-btm"><a href="about.html">About-Us</a></li><li id="links-btm"><a href="gallery.html">Gallery</a></li><li id="links-btm"><a href="contact.html">Contact-Us</a></li></ul> <ul> <li>FOLLOW US</li><li> <a href="https://www.facebook.com/kerikosecondary" target="_blank" rel="noopener"><img style="color: #3b5998; margin-left: 1.5rem;" src="icons/facebook .png" alt="Facebook"/></a> </li></ul> </div></section> <footer class="footer"> <hr id="hr-line"/> <div class="footer-inner"> <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button> <ul> <li><p>Copyright &copy; 2025 All Rights Reserved.</p></li><li><p>Developed by puntimlabs</p></li></ul> </div></footer> <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> <script src="https://code.jquery.com/jquery-3.5.0.js"></script> <script src="contact.js"></script> </body></html>
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keriko Secondary - Contact Us</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+      integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/contact.css" />
+    <link
+      href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="menu-btn"><i class="fas fa-bars fa-2x"></i></div>
+    <div class="container">
+      <nav class="main-nav">
+        <div class="logo">
+          <a href="index.html">
+            <img src="icons/school .png" alt="school logo" /><span
+              style="font-size: 18px; letter-spacing: 1px"
+            >
+              KERIKO</span
+            >
+            <p>SECONDARY</p></a
+          >
+        </div>
+        <ul class="main-menu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About-Us</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a class="active" href="contact.html">Contact-Us</a></li>
+        </ul>
+      </nav>
+      <section class="contact">
+        <div class="overlay"></div>
+        <div id="v1"></div>
+        <h1 data-aos="fade-left">CONTACT US</h1>
+      </section>
+      <section class="timeline" id="timeline">
+        <div class="container">
+          <ul>
+            <li>
+              <div class="content" data-aos="fade-right">
+                <h3><i class="fa fa-map-marker"></i>SCHOOL LOCATION</h3>
+                <p>
+                  The school is located in Nakuru County, Njoro Sub-County, Lare
+                  Division, Keriko Location.
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="content" data-aos="fade-left">
+                <h3><i class="fa fa-phone"></i>PHONE NUMBER</h3>
+                <p><a href="tel:+254103001600">+254103001600</a></p>
+              </div>
+            </li>
+            <li>
+              <div class="content" data-aos="fade-right">
+                <h3><i class="fa fa-envelope"></i>SCHOOL EMAIL</h3>
+                <p>
+                  <a href="mailto:communications@kerikosecondary.com"
+                    >communications@kerikosecondary.com</a
+                  >
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="contact-form">
+        <div class="container">
+          <form action="contact-form-handler.php" method="post">
+            <h2>Send us a message</h2>
+            <div class="input-box" data-aos="fade-in">
+              <input type="text" name="name" required="required" />
+              <span>Full Name</span>
+            </div>
+            <div class="input-box" data-aos="fade-in">
+              <input type="email" name="email" required="required" />
+              <span>Email</span>
+            </div>
+            <div class="input-box" data-aos="fade-in">
+              <textarea name="message" required="required"></textarea>
+              <span>Type your Message...</span>
+            </div>
+            <div class="input-box" data-aos="fade-up">
+              <input type="submit" value="Send Message" />
+            </div>
+          </form>
+        </div>
+      </section>
+    </div>
+    <section class="links">
+      <div class="links-inner">
+        <ul>
+          <li>
+            <a href="contact.html">
+              <img src="icons/school .png" alt="school logo" /><span
+                style="font-size: 18px; letter-spacing: 1px; color: #fff"
+              >
+                <b>KERIKO</b></span
+              >
+              <p
+                style="
+                  font-size: 10px;
+                  letter-spacing: 5.5px;
+                  margin-top: -20px;
+                  color: #fff;
+                "
+              >
+                <b>SECONDARY</b>
+              </p></a
+            >
+          </li>
+          <li>
+            <p>
+              <img
+                src="icons/phone.png"
+                alt="phone number"
+                id="phone"
+              />+254103001600
+            </p>
+          </li>
+          <li>
+            <p>
+              <img
+                src="icons/mail.png"
+                alt="school email"
+                id="mail"
+              />communications@kerikosecondary.com
+            </p>
+          </li>
+        </ul>
+        <ul>
+          <li><h4>SCHOOL</h4></li>
+          <li id="links-btm"><a href="about.html">About-Us</a></li>
+          <li id="links-btm"><a href="gallery.html">Gallery</a></li>
+          <li id="links-btm"><a href="contact.html">Contact-Us</a></li>
+        </ul>
+        <ul>
+          <li>FOLLOW US</li>
+          <li>
+            <a
+              href="https://www.facebook.com/kerikosecondary"
+              target="_blank"
+              rel="noopener"
+              ><img
+                style="color: #3b5998; margin-left: 1.5rem"
+                src="icons/facebook .png"
+                alt="Facebook"
+            /></a>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <footer class="footer">
+      <hr id="hr-line" />
+      <div class="footer-inner">
+        <button onclick="topFunction()" id="myBtn" title="Go to top">
+          Top
+        </button>
+        <ul>
+          <li><p>Copyright &copy; 2025 All Rights Reserved.</p></li>
+        </ul>
+      </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="contact.js"></script>
+  </body>
+</html>
