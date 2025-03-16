@@ -9,7 +9,9 @@ export default function ContactInfo() {
             <div className="flex justify-center mb-6">
               <MapPin className="h-12 w-12 text-primary" />
             </div>
-            <h3 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">SCHOOL LOCATION</h3>
+            <h3 className="text-xl font-bold mb-4 text-center" style={{ color: "#204434" }}>
+              SCHOOL LOCATION
+            </h3>
             <p className="text-center text-gray-700 dark:text-gray-300">
               The school is located in Nakuru County, Njoro Sub-County, Lare Division, Keriko Location.
             </p>
@@ -19,7 +21,9 @@ export default function ContactInfo() {
             <div className="flex justify-center mb-6">
               <Phone className="h-12 w-12 text-primary" />
             </div>
-            <h3 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">PHONE NUMBER</h3>
+            <h3 className="text-xl font-bold mb-4 text-center" style={{ color: "#204434" }}>
+              PHONE NUMBER
+            </h3>
             <p className="text-center">
               <a href="tel:+254103001600" className="text-primary hover:underline">
                 +254103001600
@@ -31,7 +35,9 @@ export default function ContactInfo() {
             <div className="flex justify-center mb-6">
               <Mail className="h-12 w-12 text-primary" />
             </div>
-            <h3 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">SCHOOL EMAIL</h3>
+            <h3 className="text-xl font-bold mb-4 text-center" style={{ color: "#204434" }}>
+              SCHOOL EMAIL
+            </h3>
             <p className="text-center">
               <a href="mailto:communications@kerikosecondary.com" className="text-primary hover:underline break-all">
                 communications@kerikosecondary.com

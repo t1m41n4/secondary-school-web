@@ -4,21 +4,21 @@ const features = [
   {
     id: 1,
     icon: <BookOpen className="h-10 w-10 text-primary" />,
-    title: "Quality KCSE Results",
+    title: "QUALITY KCSE RESULTS",
     description:
       "The school is currently at a 4.0 mean score and is in the top ten in Njoro Sub-County and the top public school in Lare division.",
   },
   {
     id: 2,
     icon: <Users className="h-10 w-10 text-primary" />,
-    title: "Increased Enrollment",
+    title: "INCREASED ENROLMENT",
     description:
       "The school experienced a tremendous increase in enrollment from 16 students at inception to the current 605 students.",
   },
   {
     id: 3,
     icon: <Award className="h-10 w-10 text-primary" />,
-    title: "Transition",
+    title: "TRANSITION",
     description:
       "In the past 111 students have qualified to join middle level colleges and 27 have qualified to join public universities. Many others have qualified since the school's inception.",
   },

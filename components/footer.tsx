@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { Facebook, Mail, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -12,14 +11,6 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="space-y-4">
             <Link href="/" className="flex items-center">
-              <div className="relative h-10 w-10 mr-3">
-                <Image
-                  src="/placeholder.svg?height=40&width=40"
-                  alt="Keriko Secondary School Logo"
-                  fill
-                  className="object-contain"
-                />
-              </div>
               <div className="flex flex-col">
                 <span className="text-lg font-semibold tracking-wider text-white">KERIKO</span>
                 <span className="text-xs tracking-[0.3em] -mt-1 text-gray-400">SECONDARY</span>
@@ -49,6 +40,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/blog" className="text-sm text-gray-300 hover:text-white transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="text-sm text-gray-300 hover:text-white transition-colors">
                   Contact Us
                 </Link>
@@ -74,11 +70,16 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">School Donation</h3>
             <div className="mt-4">
-              <Button asChild variant="outline" className="bg-gray-800 hover:bg-primary text-white border-gray-700">
-                <a href="https://www.paypal.com/donate" target="_blank" rel="noopener noreferrer">
+              <form action="https://www.paypal.com/donate" method="post" target="_top">
+                <input type="hidden" name="hosted_button_id" value="PWLTT46H3EBT8" />
+                <Button
+                  type="submit"
+                  variant="outline"
+                  className="bg-gray-800 hover:bg-primary text-white border-gray-700"
+                >
                   Donate Now
-                </a>
-              </Button>
+                </Button>
+              </form>
             </div>
           </div>
         </div>

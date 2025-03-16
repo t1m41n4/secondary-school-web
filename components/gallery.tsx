@@ -9,31 +9,26 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 const slides = [
   {
     id: 1,
-    image: "/placeholder.svg?height=600&width=1200",
     caption:
       "March 24th 2019, TSC CEO and Staff at TSC HQ together with Nakuru TSC County Director, Keriko Secondary School Principal Mr. Daniel Mwariri and Br. Peter Tabichi.",
   },
   {
     id: 2,
-    image: "/placeholder.svg?height=600&width=1200",
     caption:
       "April 2019, Education CS with Keriko Secondary School Principal Mr. Daniel Mwariri and other Guests in Dubai for the Global Teacher Prize Award Event.",
   },
   {
     id: 3,
-    image: "/placeholder.svg?height=600&width=1200",
     caption:
       "February 6th 2020, Deputy Ambassador of Israel to Kenya (middle) paid a Visit to Keriko Secondary School.",
   },
   {
     id: 4,
-    image: "/placeholder.svg?height=600&width=1200",
     caption:
       "April 2019, Nakuru County Governor with Br. Peter Tabichi during his welcoming after Winning the Global Teacher Prize Award.",
   },
   {
     id: 5,
-    image: "/placeholder.svg?height=600&width=1200",
     caption: "April 2019, Br. Peter Tabichi Homecoming.",
   },
 ]
@@ -72,7 +67,7 @@ export default function Gallery() {
             >
               <div className="absolute inset-0 bg-black/30 z-10" />
               <Image
-                src={slide.image || "/placeholder.svg"}
+                src={`/placeholder.svg?height=800&width=1200&text=Gallery+Image+${index + 1}`}
                 alt={`Gallery image ${slide.id}`}
                 fill
                 className="object-cover"
@@ -85,7 +80,7 @@ export default function Gallery() {
 
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 z-30 -translate-y-1/2 h-10 w-10 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center text-white transition-colors"
+            className="absolute left-4 top-1/2 z-30 -translate-y-1/2 h-10 w-10 rounded-full bg-black/30 hover:bg-school-green/70 flex items-center justify-center text-white transition-colors"
             aria-label="Previous slide"
           >
             <ChevronLeft className="h-6 w-6" />
@@ -93,7 +88,7 @@ export default function Gallery() {
 
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 z-30 -translate-y-1/2 h-10 w-10 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center text-white transition-colors"
+            className="absolute right-4 top-1/2 z-30 -translate-y-1/2 h-10 w-10 rounded-full bg-black/30 hover:bg-school-green/70 flex items-center justify-center text-white transition-colors"
             aria-label="Next slide"
           >
             <ChevronRight className="h-6 w-6" />
@@ -114,7 +109,7 @@ export default function Gallery() {
         </div>
 
         <div className="text-center mt-8">
-          <Button asChild>
+          <Button asChild className="bg-primary hover:bg-primary/90">
             <Link href="/gallery">View All Photos</Link>
           </Button>
         </div>

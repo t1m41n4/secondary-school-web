@@ -1,103 +1,149 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import { BookOpen, GraduationCap, Lightbulb, PenTool, School } from "lucide-react"
 
-const slides = [
-  {
-    id: 1,
-    image: "/placeholder.svg?height=800&width=1600",
-    title: "No Nation Can Prosper In Life Without Education",
-    buttonText: "Application Form",
-    buttonLink: "/contact",
-  },
-  {
-    id: 2,
-    image: "/placeholder.svg?height=800&width=1600",
-    title: "Providing Quality Education For A Better Future",
-    buttonText: "Learn More",
-    buttonLink: "/about",
-  },
+// Define particle types with their properties
+const particleTypes = [
+  { icon: BookOpen, color: "#ffffff" },
+  { icon: GraduationCap, color: "#ffffff" },
+  { icon: Lightbulb, color: "#ffffff" },
+  { icon: PenTool, color: "#ffffff" },
+  { icon: School, color: "#ffffff" },
 ]
 
 export default function Hero() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1))
-  }
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide()
-    }, 5000)
+    // Set canvas dimensions
+    const updateDimensions = () => {
+      if (canvasRef.current) {
+        const { clientWidth, clientHeight } = document.documentElement
+        setDimensions({
+          width: clientWidth,
+          height: Math.max(clientHeight * 0.9, 600), // 90vh or minimum 600px
+        })
+        canvasRef.current.width = clientWidth
+        canvasRef.current.height = Math.max(clientHeight * 0.9, 600)
+      }
+    }
 
-    return () => clearInterval(interval)
-  }, [])
+    updateDimensions()
+    window.addEventListener("resize", updateDimensions)
+
+    // Create particles
+    const particles: any[] = []
+    const particleCount = Math.min(Math.floor(dimensions.width / 20), 40) // Responsive particle count
+
+    for (let i = 0; i < particleCount; i++) {
+      const type = particleTypes[Math.floor(Math.random() * particleTypes.length)]
+      particles.push({
+        x: Math.random() * dimensions.width,
+        y: Math.random() * dimensions.height,
+        size: Math.random() * 15 + 10,
+        speedX: Math.random() * 1 - 0.5,
+        speedY: Math.random() * 1 - 0.5,
+        rotation: Math.random() * 360,
+        rotationSpeed: Math.random() * 2 - 1,
+        type,
+        opacity: Math.random() * 0.5 + 0.1,
+      })
+    }
+
+    // Animation loop
+    let animationFrameId: number
+
+    const render = () => {
+      const canvas = canvasRef.current
+      if (!canvas) return
+
+      const ctx = canvas.getContext("2d")
+      if (!ctx) return
+
+      // Create gradient background
+      const gradient = ctx.createLinearGradient(0, 0, dimensions.width, dimensions.height)
+      gradient.addColorStop(0, "#204434") // Dark green (primary color)
+      gradient.addColorStop(0.5, "#2c5a46") // Medium green
+      gradient.addColorStop(1, "#204434") // Back to dark green
+
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, dimensions.width, dimensions.height)
+
+      // Update and draw particles
+      particles.forEach((particle) => {
+        // Update position
+        particle.x += particle.speedX
+        particle.y += particle.speedY
+        particle.rotation += particle.rotationSpeed
+
+        // Wrap around edges
+        if (particle.x < -50) particle.x = dimensions.width + 50
+        if (particle.x > dimensions.width + 50) particle.x = -50
+        if (particle.y < -50) particle.y = dimensions.height + 50
+        if (particle.y > dimensions.height + 50) particle.y = -50
+
+        // Draw particle
+        ctx.save()
+        ctx.translate(particle.x, particle.y)
+        ctx.rotate((particle.rotation * Math.PI) / 180)
+        ctx.globalAlpha = particle.opacity
+
+        // Draw icon (simplified representation)
+        ctx.fillStyle = particle.type.color
+        ctx.beginPath()
+
+        // Different shapes based on icon type
+        if (particle.type.icon === BookOpen) {
+          ctx.rect(-particle.size / 2, -particle.size / 4, particle.size, particle.size / 2)
+        } else if (particle.type.icon === GraduationCap) {
+          ctx.moveTo(-particle.size / 2, particle.size / 4)
+          ctx.lineTo(0, -particle.size / 4)
+          ctx.lineTo(particle.size / 2, particle.size / 4)
+          ctx.lineTo(0, particle.size / 2)
+        } else if (particle.type.icon === Lightbulb) {
+          ctx.arc(0, 0, particle.size / 2, 0, Math.PI * 2)
+        } else if (particle.type.icon === PenTool) {
+          ctx.moveTo(-particle.size / 2, -particle.size / 2)
+          ctx.lineTo(particle.size / 2, particle.size / 2)
+          ctx.moveTo(particle.size / 2, -particle.size / 2)
+          ctx.lineTo(-particle.size / 2, particle.size / 2)
+        } else {
+          ctx.rect(-particle.size / 2, -particle.size / 2, particle.size, particle.size)
+        }
+
+        ctx.fill()
+        ctx.restore()
+      })
+
+      animationFrameId = window.requestAnimationFrame(render)
+    }
+
+    render()
+
+    return () => {
+      window.removeEventListener("resize", updateDimensions)
+      window.cancelAnimationFrame(animationFrameId)
+    }
+  }, [dimensions.width, dimensions.height])
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
-          }`}
-        >
-          <div className="absolute inset-0 bg-black/50 z-10" />
-          <Image
-            src={slide.image || "/placeholder.svg"}
-            alt={`Slide ${slide.id}`}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-8">
-              {slide.title}
-            </h1>
-            <Button asChild size="lg" className="mt-4">
-              <Link href={slide.buttonLink}>
-                {slide.buttonText}
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+    <div className="relative w-full h-screen overflow-hidden">
+      <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
+        <div className="text-center">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight max-w-4xl mx-auto">
+            No Nation Can Prosper In Life Without Education
+          </h1>
+          <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg max-w-2xl mx-auto">
+            <p className="text-white/90 text-lg md:text-xl">
+              Keriko Secondary School provides quality education founded on strong principles of discipline, character
+              formation and leadership development.
+            </p>
           </div>
         </div>
-      ))}
-
-      <button
-        onClick={prevSlide}
-        className="absolute left-4 top-1/2 z-30 -translate-y-1/2 h-10 w-10 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center text-white transition-colors"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-
-      <button
-        onClick={nextSlide}
-        className="absolute right-4 top-1/2 z-30 -translate-y-1/2 h-10 w-10 rounded-full bg-black/30 hover:bg-black/50 flex items-center justify-center text-white transition-colors"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`h-2 w-2 rounded-full transition-colors ${index === currentSlide ? "bg-white" : "bg-white/50"}`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
       </div>
     </div>
   )

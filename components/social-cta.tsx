@@ -14,7 +14,7 @@ export default function SocialCta() {
           href="https://www.facebook.com/kerikosecondary"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-blue-600 hover:bg-blue-700 transition-colors"
+          className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-blue-600 hover:bg-primary transition-colors"
           aria-label="Facebook"
         >
           <Facebook className="h-6 w-6" />

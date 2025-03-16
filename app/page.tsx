@@ -5,7 +5,7 @@ import ContactCta from "@/components/contact-cta"
 import StatsCounter from "@/components/stats-counter"
 import Leadership from "@/components/leadership"
 import SocialCta from "@/components/social-cta"
-import Gallery from "@/components/gallery"
+import Testimonials from "@/components/testimonials"
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       <StatsCounter />
       <Leadership />
       <SocialCta />
-      <Gallery />
+      <Testimonials />
     </main>
   )
 }

@@ -4,14 +4,16 @@ export default function Achievements() {
   return (
     <section className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">OUR ACHIEVEMENTS</h2>
+        <h2 className="text-3xl font-bold text-center mb-12" style={{ color: "#204434" }}>
+          OUR ACHIEVEMENTS
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
             <div className="flex justify-center mb-6">
               <Trophy className="h-12 w-12 text-primary" />
             </div>
-            <h3 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">
+            <h3 className="text-xl font-bold mb-4 text-center" style={{ color: "#204434" }}>
               Science & Engineering Fair (KSEF & ISEF)
             </h3>
             <p className="text-gray-700 dark:text-gray-300">
@@ -28,12 +30,12 @@ export default function Achievements() {
             <div className="flex justify-center mb-6">
               <Award className="h-12 w-12 text-primary" />
             </div>
-            <h3 className="text-xl font-bold mb-4 text-center text-gray-900 dark:text-white">Global Teacher Prize</h3>
+            <h3 className="text-xl font-bold mb-4 text-center" style={{ color: "#204434" }}>
+              Global Teacher Prize
+            </h3>
             <p className="text-gray-700 dark:text-gray-300">
-              One of our teachers won the 2019 global teacher prize.
-              This made history as he is the first from Africa to achieve the coveted prize.
-              This is a great milestone not only for our school but for Kenya and
-              Africa at large.
+            One of our teachers won the 2019 Global Teacher Prize, making history as the first from Africa to achieve this coveted award.
+            This is a great milestone not only for our school but also for Kenya and Africa at large.
             </p>
           </div>
         </div>

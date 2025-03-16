@@ -53,6 +53,10 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        // School color as direct hex value for specific use cases
+        school: {
+          green: "#204434", // Updated to rgb(32, 68, 52)
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

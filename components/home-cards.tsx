@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
@@ -6,16 +8,14 @@ import { ChevronRight } from "lucide-react"
 const cards = [
   {
     id: 1,
-    image: "/placeholder.svg?height=400&width=600",
     title: "Global Teacher Prize",
     date: "May 24th, 2019",
     description:
-      "One of the teachers, Br. Peter Tabichi, won the 2019 global teacher prize. He is the only one in Africa to have achieved the great feat.",
-    link: "https://globalteacherprize.org/news/global-teacher-prize-finalists/2019-finalists-global-teacher-prize/203/203-Peter-Tabichi",
+      "One of our teachers, Br. Peter Tabichi, won the 2019 Global Teacher Prize. He is the first from Africa to achieve this great feat.",
+    link: "https://www.globalteacherprize.org/winners/peter-tabichi/",
   },
   {
     id: 2,
-    image: "/placeholder.svg?height=400&width=600",
     title: "Intel ISEF Competition",
     date: "May 16th, 2019",
     description:
@@ -30,10 +30,15 @@ export default function HomeCards() {
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">Our Achievements</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {cards.map((card) => (
+          {cards.map((card, index) => (
             <Card key={card.id} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-shadow">
               <div className="relative h-64 w-full">
-                <Image src={card.image || "/placeholder.svg"} alt={card.title} fill className="object-cover" />
+                <Image
+                  src={`/placeholder.svg?height=600&width=800&text=Achievement+${index + 1}`}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                />
               </div>
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-2">

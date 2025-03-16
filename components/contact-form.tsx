@@ -26,15 +26,39 @@ export default function ContactForm() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
+    try {
+      // Send email using a server action or API route
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          to: "communications@kerikosecondary.com", // School email address
+        }),
       })
-      setFormData({ name: "", email: "", message: "" })
+
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: "We'll get back to you as soon as possible.",
+        })
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        throw new Error("Failed to send message")
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      })
+    } finally {
       setIsSubmitting(false)
-    }, 1500)
+    }
   }
 
   return (
@@ -80,7 +104,7 @@ export default function ContactForm() {
               />
             </div>
 
-            <Button type="submit" className="w-full" disabled={isSubmitting}>
+            <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isSubmitting}>
               {isSubmitting ? "Sending..." : "Send Message"}
             </Button>
           </form>

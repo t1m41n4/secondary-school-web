@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
@@ -11,6 +10,7 @@ const navigation = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
   { name: "Gallery", href: "/gallery" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact Us", href: "/contact" },
 ]
 
@@ -37,15 +37,6 @@ export default function Header() {
         <div className="flex lg:flex-1">
           <Link href="/" className="flex items-center -m-1.5 p-1.5">
             <span className="sr-only">Keriko Secondary School</span>
-            <div className="relative h-10 w-10 mr-3">
-              <Image
-                src="/placeholder.svg?height=40&width=40"
-                alt="Keriko Secondary School Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
             <div className="flex flex-col">
               <span className="text-lg font-semibold tracking-wider text-primary">KERIKO</span>
               <span className="text-xs tracking-[0.3em] -mt-1 text-muted-foreground">SECONDARY</span>
@@ -78,7 +69,7 @@ export default function Header() {
         </div>
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Button asChild size="sm">
+          <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
             <Link href="/contact">Apply Now</Link>
           </Button>
         </div>
@@ -92,15 +83,6 @@ export default function Header() {
             <div className="flex items-center justify-between">
               <Link href="/" className="flex items-center -m-1.5 p-1.5" onClick={() => setMobileMenuOpen(false)}>
                 <span className="sr-only">Keriko Secondary School</span>
-                <div className="relative h-10 w-10 mr-3">
-                  <Image
-                    src="/placeholder.svg?height=40&width=40"
-                    alt="Keriko Secondary School Logo"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
                 <div className="flex flex-col">
                   <span className="text-lg font-semibold tracking-wider text-primary">KERIKO</span>
                   <span className="text-xs tracking-[0.3em] -mt-1 text-muted-foreground">SECONDARY</span>
@@ -131,7 +113,7 @@ export default function Header() {
                   ))}
                 </div>
                 <div className="py-6">
-                  <Button asChild className="w-full">
+                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
                     <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
                       Apply Now
                     </Link>

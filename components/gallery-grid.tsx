@@ -1,71 +1,31 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { X } from "lucide-react"
-
-// This would be replaced with your actual gallery images
-const galleryImages = Array.from({ length: 24 }, (_, i) => ({
-  id: i + 1,
-  src: `/placeholder.svg?height=400&width=600&text=Gallery+Image+${i + 1}`,
-  alt: `Gallery image ${i + 1}`,
-  caption: `This is the caption for gallery image ${i + 1}. Replace with actual captions.`,
-}))
-
 export default function GalleryGrid() {
-  const [selectedImage, setSelectedImage] = useState<(typeof galleryImages)[0] | null>(null)
-
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
-        <div className="mb-8 text-center">
-          <p className="text-gray-600 dark:text-gray-300 mb-4">Click on an image to view details</p>
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white">CLICK ON IMAGE TO ZOOM IN FOR CAPTION</h3>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {galleryImages.map((image) => (
-            <div
-              key={image.id}
-              className="relative aspect-square overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-              onClick={() => setSelectedImage(image)}
-            >
-              <Image src={image.src || "/placeholder.svg"} alt={image.alt} fill className="object-cover" />
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-6 mb-8 rounded-md">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <svg className="h-6 w-6 text-amber-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path
+                  fillRule="evenodd"
+                  d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </div>
-          ))}
-        </div>
-
-        <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
-          <DialogContent className="max-w-4xl p-0 overflow-hidden bg-transparent border-none">
-            <div className="relative">
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-2 right-2 z-10 h-8 w-8 rounded-full bg-black/50 flex items-center justify-center text-white"
-                aria-label="Close dialog"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              <div className="relative aspect-video w-full">
-                {selectedImage && (
-                  <Image
-                    src={selectedImage.src || "/placeholder.svg"}
-                    alt={selectedImage.alt}
-                    fill
-                    className="object-contain"
-                  />
-                )}
+            <div className="ml-3">
+              <h3 className="text-lg font-medium text-amber-800">Gallery Under Construction</h3>
+              <div className="mt-2 text-md text-amber-700">
+                <p>
+                  Our gallery is currently being updated with new photos. Please check back soon to see our complete
+                  collection of images showcasing school activities, achievements, and events.
+                </p>
               </div>
-
-              {selectedImage && (
-                <div className="bg-black/80 p-4 text-white">
-                  <p>{selectedImage.caption}</p>
-                </div>
-              )}
             </div>
-          </DialogContent>
-        </Dialog>
+          </div>
+        </div>
       </div>
     </section>
   )
