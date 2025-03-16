@@ -13,7 +13,7 @@ export default function ContactInfo() {
               SCHOOL LOCATION
             </h3>
             <p className="text-center text-gray-700 dark:text-gray-300">
-              The school is located in Nakuru County, Njoro Sub-County, Lare Division, Keriko Location.
+              The school is located in Nakuru County, Njoro Sub-County, Lare Division.
             </p>
           </div>
 
