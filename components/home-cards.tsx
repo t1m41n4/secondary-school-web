@@ -12,7 +12,7 @@ const cards = [
     date: "May 24th, 2019",
     description:
       "One of our teachers, Br. Peter Tabichi, won the 2019 Global Teacher Prize. He is the first from Africa to achieve this great feat.",
-    link: "https://www.globalteacherprize.org/winners/peter-tabichi/",
+    link: "https://globalteacherprize.org/pages/peter-tabichi-2019",
   },
   {
     id: 2,
