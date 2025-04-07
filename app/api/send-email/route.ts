@@ -22,7 +22,6 @@ export async function POST(request: Request) {
       text: `
         Name: ${name}
         Email: ${email}
-        
         Message:
         ${message}
       `,
@@ -48,4 +47,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
   }
 }
-
