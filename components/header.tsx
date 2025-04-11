@@ -5,6 +5,7 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
+import { usePathname } from "next/navigation"
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -17,6 +18,10 @@ const navigation = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  // Check if we're on the homepage
+  const isHomepage = pathname === "/"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,22 +61,30 @@ export default function Header() {
           </Button>
         </div>
 
-        <div className="hidden lg:flex lg:gap-x-12">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors"
-            >
-              {item.name}
-            </Link>
-          ))}
+        {/* This is the key change - make sure the navigation links are center-aligned */}
+        <div className="hidden lg:flex lg:justify-center lg:items-center lg:flex-1">
+          <div className="flex gap-x-8">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors"
+              >
+                {item.name}
+              </Link>
+            ))}
+          </div>
         </div>
 
+        {/* Keep the space reserved for the button even when it's not shown */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
-            <Link href="/contact">Apply Now</Link>
-          </Button>
+          {isHomepage ? (
+            <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
+              <Link href="/contact">Apply Now</Link>
+            </Button>
+          ) : (
+            <div className="w-[88px]"></div> // Approximate width of the button to maintain space
+          )}
         </div>
       </nav>
 
@@ -112,12 +125,15 @@ export default function Header() {
                     </Link>
                   ))}
                 </div>
+                {/* Always show the section and conditionally show the button */}
                 <div className="py-6">
-                  <Button asChild className="w-full bg-primary hover:bg-primary/90">
-                    <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                      Apply Now
-                    </Link>
-                  </Button>
+                  {isHomepage && (
+                    <Button asChild className="w-full bg-primary hover:bg-primary/90">
+                      <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                        Apply Now
+                      </Link>
+                    </Button>
+                  )}
                 </div>
               </div>
             </div>

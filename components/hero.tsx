@@ -14,23 +14,32 @@ const particleTypes = [
 
 export default function Hero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+  // Initialize with non-zero dimensions to start rendering immediately
+  const [dimensions, setDimensions] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : 1200,
+    height: typeof window !== 'undefined' ? Math.max(window.innerHeight * 0.9, 600) : 800
+  })
 
   useEffect(() => {
     // Set canvas dimensions
     const updateDimensions = () => {
+      const { clientWidth, clientHeight } = document.documentElement
+      const newDimensions = {
+        width: clientWidth,
+        height: Math.max(clientHeight * 0.9, 600), // 90vh or minimum 600px
+      }
+
+      setDimensions(newDimensions)
+
       if (canvasRef.current) {
-        const { clientWidth, clientHeight } = document.documentElement
-        setDimensions({
-          width: clientWidth,
-          height: Math.max(clientHeight * 0.9, 600), // 90vh or minimum 600px
-        })
-        canvasRef.current.width = clientWidth
-        canvasRef.current.height = Math.max(clientHeight * 0.9, 600)
+        canvasRef.current.width = newDimensions.width
+        canvasRef.current.height = newDimensions.height
       }
     }
 
+    // Call immediately to set initial dimensions
     updateDimensions()
+
     window.addEventListener("resize", updateDimensions)
 
     // Create particles
@@ -120,13 +129,19 @@ export default function Hero() {
       animationFrameId = window.requestAnimationFrame(render)
     }
 
-    render()
+    // Start animation as soon as component mounts
+    // Use requestAnimationFrame to ensure animation starts on next frame
+    requestAnimationFrame(() => {
+      if (canvasRef.current) {
+        render();
+      }
+    });
 
     return () => {
       window.removeEventListener("resize", updateDimensions)
       window.cancelAnimationFrame(animationFrameId)
     }
-  }, [dimensions.width, dimensions.height])
+  }, []) // Remove dependency on dimensions to avoid re-creating animation on resize
 
   return (
     <div className="relative w-full h-screen overflow-hidden">
