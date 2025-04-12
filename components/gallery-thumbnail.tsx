@@ -1,8 +1,7 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
-import { useInView } from "react-intersection-observer"
 import type { MediaAsset } from "@/lib/gallery-data"
 
 interface GalleryThumbnailProps {
@@ -14,10 +13,35 @@ interface GalleryThumbnailProps {
 export default function GalleryThumbnail({ image, onClick, priority = false }: GalleryThumbnailProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [hasError, setHasError] = useState(false)
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: '200px 0px',
-  })
+  const [isInView, setIsInView] = useState(false)
+  const thumbnailRef = useRef<HTMLDivElement>(null)
+
+  // Simple intersection observer implementation without the library
+  useEffect(() => {
+    // Skip if component has priority loading
+    if (priority) {
+      setIsInView(true)
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsInView(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '200px 0px' }
+    )
+
+    if (thumbnailRef.current) {
+      observer.observe(thumbnailRef.current)
+    }
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [priority])
 
   // Generate both low-quality and high-quality image URLs
   const thumbnailUrl = image.fallbackSrc || `/placeholder.svg?height=200&width=200&text=Loading...`
@@ -25,7 +49,7 @@ export default function GalleryThumbnail({ image, onClick, priority = false }: G
 
   return (
     <div
-      ref={ref}
+      ref={thumbnailRef}
       className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-100 shadow-md cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg group"
       onClick={onClick}
     >
@@ -47,7 +71,7 @@ export default function GalleryThumbnail({ image, onClick, priority = false }: G
       />
 
       {/* Main image (only loaded when in view) */}
-      {(inView || priority) && (
+      {(isInView || priority) && (
         <Image
           src={fullImageUrl}
           alt={image.alt || `Image ${image.id}`}
