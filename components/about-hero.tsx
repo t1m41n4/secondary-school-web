@@ -17,15 +17,18 @@ export default function AboutHero() {
   // Initialize with non-zero dimensions to start rendering immediately
   const [dimensions, setDimensions] = useState({
     width: typeof window !== 'undefined' ? window.innerWidth : 1200,
-    height: typeof window !== 'undefined' ? Math.max(window.innerHeight * 0.5, 400) : 500
+    height: typeof window !== 'undefined' ? Math.max(window.innerHeight * 0.4, 350) : 350  // Adjusted height
   })
+
+  // Add state for the title animation
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     // Set canvas dimensions
     const updateDimensions = () => {
       const { clientWidth } = document.documentElement
-      // Fixed height for non-homepage heroes
-      const height = Math.max(window.innerHeight * 0.5, 400)
+      // Adjusted height for a more compact hero section
+      const height = Math.max(window.innerHeight * 0.4, 350) // 40vh with minimum 350px
 
       const newDimensions = {
         width: clientWidth,
@@ -139,6 +142,11 @@ export default function AboutHero() {
       }
     });
 
+    // Trigger the title slide-in animation
+    requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+
     return () => {
       window.removeEventListener("resize", updateDimensions)
       window.cancelAnimationFrame(animationFrameId)
@@ -146,12 +154,21 @@ export default function AboutHero() {
   }, []) // Remove dependency on dimensions to avoid re-creating animation on resize
 
   return (
-    <div className="relative h-[50vh] overflow-hidden">
+    <div className="relative h-[40vh] min-h-[350px] overflow-hidden">
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center">
-          ABOUT US
-        </h1>
+      <div className="absolute inset-0 flex items-center justify-center z-10 px-4">
+        <div className="text-center">
+          <h1
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 transition-all duration-700
+            ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+          >
+            ABOUT US
+          </h1>
+          <div
+            className={`w-24 h-1 bg-white mx-auto mt-6 transition-all duration-700 delay-300
+            ${isVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"}`}
+          ></div>
+        </div>
       </div>
     </div>
   )
