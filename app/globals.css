@@ -107,3 +107,29 @@ body {
 .article-content blockquote {
   @apply pl-4 border-l-4 border-gray-300 italic my-4;
 }
+
+/* Add responsive utilities for better mobile experience */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Responsive padding adjustments */
+  .responsive-container {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Responsive font sizing */
+  .text-heading-responsive {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
