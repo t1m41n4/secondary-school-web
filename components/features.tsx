@@ -20,7 +20,7 @@ const features = [
     icon: <Award className="h-10 w-10 text-primary" />,
     title: "TRANSITION",
     description:
-      "In the past 111 students have qualified to join middle level colleges and 27 have qualified to join public universities. Many others have qualified since the school's inception.",
+      "In the past 111 students have qualified to join middle level colleges and 136 have qualified to join public universities. Many others have qualified since the school's inception.",
   },
 ]
 

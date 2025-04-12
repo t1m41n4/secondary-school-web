@@ -1,11 +1,35 @@
 import GalleryHero from "@/components/gallery-hero"
+import FeaturedGallery from "@/components/featured-gallery"
 import GalleryGrid from "@/components/gallery-grid"
+import { Separator } from "@/components/ui/separator"
+import { galleryImages } from "@/lib/gallery-data"
+
+export const metadata = {
+  title: "School Gallery | Keriko Secondary School",
+  description: "Browse through our collection of school memories, events, and achievements.",
+}
 
 export default function GalleryPage() {
   return (
-    <main>
+    <main className="min-h-screen">
       <GalleryHero />
-      <GalleryGrid />
+
+      {/* Featured Slideshow */}
+      <section className="bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4 py-12">
+          <h2 className="text-2xl font-bold mb-6 text-center">Featured Moments</h2>
+          <FeaturedGallery />
+        </div>
+      </section>
+
+      <Separator className="max-w-4xl mx-auto" />
+
+      {/* Gallery Grid */}
+      <section id="gallery-grid" className="bg-white dark:bg-gray-950 py-12">
+        <div className="container mx-auto px-4">
+          <GalleryGrid media={galleryImages} />
+        </div>
+      </section>
     </main>
   )
 }
