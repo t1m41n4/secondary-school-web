@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ExternalLink } from "lucide-react"
+import Link from "next/link"
 
 // Featured articles data with working links
 const featuredArticles = [
@@ -11,7 +12,8 @@ const featuredArticles = [
       "Keriko Secondary School's Br. Peter Tabichi won the prestigious Global Teacher Prize, becoming the first teacher from Africa to receive this honor.",
     date: "March 24, 2019",
     category: "Achievements",
-    externalUrl: "https://globalteacherprize.org/pages/peter-tabichi-2019",
+    url: "/blog/peter-tabichi-global-teacher",
+    externalUrl: "https://www.globalteacherprize.org/winners/peter-tabichi/",
     wikipediaUrl: "https://en.wikipedia.org/wiki/Peter_Tabichi",
   },
   {
@@ -44,12 +46,12 @@ export default function FeaturedArticles() {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredArticles.map((article, index) => (
+          {featuredArticles.map((article) => (
             <Card key={article.id} className="blog-card overflow-hidden border-none shadow-md">
               <div className="relative h-48 w-full">
                 <Image
                   src={`/placeholder.svg?height=400&width=600&text=${article.category}`}
-                  alt=""
+                  alt={article.title}
                   fill
                   className="object-cover"
                 />
@@ -62,14 +64,23 @@ export default function FeaturedArticles() {
                 <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{article.title}</h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{article.excerpt}</p>
                 <div className="flex flex-wrap gap-2">
-                  <a
-                    href={article.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
-                  >
-                    Read More <ArrowRight className="ml-1 h-4 w-4" />
-                  </a>
+                  {article.url ? (
+                    <Link
+                      href={article.url}
+                      className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
+                    >
+                      Read Full Story <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  ) : (
+                    <a
+                      href={article.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-primary hover:text-primary/80 font-medium"
+                    >
+                      Read on External Site <ExternalLink className="ml-1 h-4 w-4" />
+                    </a>
+                  )}
 
                   {article.wikipediaUrl && (
                     <a

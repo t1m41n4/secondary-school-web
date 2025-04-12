@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.variable} font-sans`}>
+      <body className={`${poppins.variable} font-sans`} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <Header />

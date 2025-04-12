@@ -37,6 +37,21 @@ const nextConfig = {
     ],
     domains: ['localhost'],
   },
+  // Ensure proper video asset handling
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.(mp4|webm)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          publicPath: '/_next/static/',
+          outputPath: 'static/',
+          name: '[name].[hash].[ext]',
+        },
+      },
+    });
+    return config;
+  },
   experimental: {
     optimizeCss: true,
     serverComponentsExternalPackages: ['sharp'],
