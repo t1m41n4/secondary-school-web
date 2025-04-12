@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 import { BookOpen, GraduationCap, Lightbulb, PenTool, School } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 // Define particle types with their properties
 const particleTypes = [
@@ -19,6 +21,7 @@ export default function Hero() {
     width: typeof window !== 'undefined' ? window.innerWidth : 1200,
     height: typeof window !== 'undefined' ? Math.max(window.innerHeight * 0.9, 600) : 800
   })
+  const [isContentVisible, setIsContentVisible] = useState(false)
 
   useEffect(() => {
     // Set canvas dimensions
@@ -39,6 +42,11 @@ export default function Hero() {
 
     // Call immediately to set initial dimensions
     updateDimensions()
+
+    // Show content with animation after a small delay
+    setTimeout(() => {
+      setIsContentVisible(true)
+    }, 100)
 
     window.addEventListener("resize", updateDimensions)
 
@@ -147,16 +155,26 @@ export default function Hero() {
     <div className="relative w-full h-screen overflow-hidden">
       <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
 
-      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4">
-        <div className="text-center">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight max-w-4xl mx-auto">
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-4 sm:px-6">
+        <div className={`text-center transition-all duration-1000 ${isContentVisible ? 'opacity-100 transform-none' : 'opacity-0 translate-y-8'}`}>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight max-w-4xl mx-auto">
             No Nation Can Prosper In Life Without Education
           </h1>
-          <div className="bg-white/10 backdrop-blur-sm p-6 rounded-lg max-w-2xl mx-auto">
-            <p className="text-white/90 text-lg md:text-xl">
+          <div className="bg-white/10 backdrop-blur-sm p-4 sm:p-6 rounded-lg max-w-2xl mx-auto">
+            <p className="text-white/90 text-base sm:text-lg md:text-xl">
               Keriko Secondary School provides quality education founded on strong principles of discipline, character
               formation and leadership development.
             </p>
+          </div>
+
+          <div className="mt-6 sm:mt-8">
+            <Button
+              asChild
+              size="lg"
+              className="bg-white text-primary hover:bg-white/90 px-6 py-3 text-base sm:text-lg"
+            >
+              <Link href="/contact">Contact Us</Link>
+            </Button>
           </div>
         </div>
       </div>
