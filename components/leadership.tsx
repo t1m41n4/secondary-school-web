@@ -10,7 +10,7 @@ const leaders = [
   },
   {
     id: 2,
-    name: "Mr. Bernard Karanga",
+    name: "Ms. Rosina Kibichum",
     title: "Deputy Principal",
     school: "Keriko Secondary",
   },

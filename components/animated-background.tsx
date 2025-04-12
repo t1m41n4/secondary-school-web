@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 interface AnimatedBackgroundProps {
   color?: string
@@ -14,6 +14,8 @@ export default function AnimatedBackground({
   density = 50
 }: AnimatedBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const animationRef = useRef<number | null>(null)
+  const [isActive, setIsActive] = useState(true)
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -57,13 +59,14 @@ export default function AnimatedBackground({
     }
 
     // Animation function
-    let animationFrameId: number
     const render = () => {
+      if (!isActive) return;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       // Create gradient background
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, 0)
-      gradient.addColorStop(0, "#204434")
+      gradient.addColorStop(0, color)
       gradient.addColorStop(1, "#2c5a46")
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
@@ -112,17 +115,40 @@ export default function AnimatedBackground({
         ctx.restore()
       })
 
-      animationFrameId = window.requestAnimationFrame(render)
+      animationRef.current = window.requestAnimationFrame(render)
     }
 
+    // Start animation
     render()
+
+    // Use visibility change to pause/resume animation
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        setIsActive(false)
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current)
+          animationRef.current = null
+        }
+      } else {
+        setIsActive(true)
+        if (!animationRef.current) {
+          animationRef.current = requestAnimationFrame(render)
+        }
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
 
     // Clean up
     return () => {
       window.removeEventListener('resize', updateDimensions)
-      window.cancelAnimationFrame(animationFrameId)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+      }
     }
-  }, [color, particleColor, density])
+  }, [color, particleColor, density, isActive])
 
   return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 }

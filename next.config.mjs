@@ -26,14 +26,32 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'placehold.co',
       },
+      {
+        protocol: 'https',
+        hostname: '**.placeholder.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      }
     ],
     domains: ['localhost'],
   },
   experimental: {
+    optimizeCss: true,
+    serverComponentsExternalPackages: ['sharp'],
+    optimizePackageImports: ['lucide-react'],
+    serverActions: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error', 'warn'],
+    } : false,
+  },
   output: 'export',
+  distDir: process.env.BUILD_DIR || '.next',
 }
 
 mergeConfig(nextConfig, userConfig)
