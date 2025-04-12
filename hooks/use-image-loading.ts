@@ -4,20 +4,17 @@ export function useImageLoading() {
   // Track images that failed to load
   const [failedImages, setFailedImages] = useState<Set<number>>(new Set())
 
-  // Instead of using Date.now() directly when rendering, use a stable state value
-  const [cacheBuster, setCacheBuster] = useState<string | null>(null)
+  // Remove the cacheBuster state that uses random values during SSR/hydration
+  // Instead, we'll apply cache busting only after hydration is complete
+  const [isHydrated, setIsHydrated] = useState(false)
 
-  // Initialize cache buster after component mounts to avoid hydration mismatch
+  // Set hydration flag after component mounts (client-side only)
   useEffect(() => {
-    // Only set the cache buster after initial hydration, client-side only
-    if (typeof window !== 'undefined') {
-      setCacheBuster(`cb=${Math.floor(Math.random() * 1000000)}`)
-    }
+    setIsHydrated(true)
   }, [])
 
   // Handle image loading errors with more detailed logging
   const handleImageError = useCallback((imageId: number) => {
-    // More informative logging that doesn't break the app
     console.warn(`Image with ID ${imageId} failed to load. Using fallback.`)
 
     // Add to failed images set
@@ -39,14 +36,22 @@ export function useImageLoading() {
       return image.fallbackSrc || `/placeholder.svg?height=600&width=800&text=Image+${image.id}`
     }
 
-    // If in development mode, add cache buster to avoid caching issues
-    if (cacheBuster && typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-      return `${image.src}?${cacheBuster}`
+    // Only add cache busting query parameter client-side after hydration
+    if (isHydrated && process.env.NODE_ENV === 'development') {
+      // Use a stable parameter that won't change during the session
+      return `${image.src}?_t=${encodeURIComponent(window.sessionStorage.getItem('cache_token') || '')}`
     }
 
     // Default case: return the original source
     return image.src
-  }, [failedImages, cacheBuster])
+  }, [failedImages, isHydrated])
+
+  // Generate and store a cache token in session storage - only runs client-side after hydration
+  useEffect(() => {
+    if (isHydrated && process.env.NODE_ENV === 'development' && !window.sessionStorage.getItem('cache_token')) {
+      window.sessionStorage.setItem('cache_token', Date.now().toString())
+    }
+  }, [isHydrated])
 
   return {
     failedImages,

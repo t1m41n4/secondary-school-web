@@ -100,14 +100,14 @@ export default function Header() {
           </Button>
         </div>
 
-        {/* Desktop navigation links - center-aligned */}
+        {/* Desktop navigation links - center-aligned with whitespace-nowrap to prevent wrapping */}
         <div className="hidden lg:flex lg:justify-center lg:items-center lg:flex-1">
           <div className="flex gap-x-4 xl:gap-x-8">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-semibold leading-6 transition-colors px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 ${
+                className={`text-sm font-semibold leading-6 transition-colors px-2 py-1 rounded whitespace-nowrap hover:bg-gray-100 dark:hover:bg-gray-800 ${
                   pathname === item.href
                     ? "text-primary"
                     : "text-gray-900 dark:text-gray-100 hover:text-primary"
@@ -123,7 +123,7 @@ export default function Header() {
         {/* Desktop CTA button area */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {isHomepage ? (
-            <Button asChild size="sm" className="bg-primary hover:bg-primary/90">
+            <Button asChild size="sm" className="bg-primary hover:bg-primary/90 whitespace-nowrap">
               <Link href="/contact">Apply Now</Link>
             </Button>
           ) : (

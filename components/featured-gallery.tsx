@@ -77,8 +77,8 @@ function FeaturedSlideshow() {
   }, [])
 
   return (
-    <div className="max-w-5xl mx-auto">
-      <div className="relative overflow-hidden rounded-xl shadow-2xl h-[400px] md:h-[600px] bg-gray-100">
+    <div className="max-w-full mx-auto">
+      <div className="relative overflow-hidden rounded-xl shadow-2xl h-[400px] md:h-[500px] bg-gray-100">
         {/* Progress bar */}
         <div className="absolute top-0 left-0 right-0 z-30 h-1 bg-gray-200">
           <div
@@ -153,8 +153,8 @@ function FeaturedSlideshow() {
         </div>
       </div>
 
-      <div className="text-center mt-8">
-        <Button asChild className="bg-primary hover:bg-primary/90">
+      <div className="text-center mt-6">
+        <Button asChild className="bg-primary hover:bg-primary/90" size="sm">
           <Link href="#gallery-grid" className="flex items-center gap-2">
             Browse All Photos <ExternalLink className="h-4 w-4" />
           </Link>
