@@ -57,11 +57,13 @@ export default function FeaturedArticles() {
           {articles.map((article) => (
             <Card key={article.id} className="blog-card overflow-hidden">
               <div className="relative h-48 w-full">
+                <div className="absolute inset-0 bg-gray-200 animate-pulse"></div>
                 <Image
                   src={article.image || "/placeholder.svg?height=400&width=600&text=Blog+Image"}
                   alt={article.title}
                   fill
                   className="object-cover"
+                  unoptimized
                 />
                 <div className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded-full">
                   {article.category}
