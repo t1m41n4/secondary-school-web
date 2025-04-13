@@ -6,12 +6,8 @@ interface CardProps {
   className?: string
 }
 
-export function Card({ children, className }: CardProps) {
-  return (
-    <div className={cn("border rounded-md p-4 shadow-sm bg-background", className)}>
-      {children}
-    </div>
-  )
+export function Card({ children }: { children: React.ReactNode }) {
+  return <div>{children}</div>
 }
 
 const CardHeader = React.forwardRef<
