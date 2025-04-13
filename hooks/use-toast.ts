@@ -171,24 +171,18 @@ function toast({ ...props }: Toast) {
   }
 }
 
-function useToast() {
-  const [state, setState] = React.useState<State>(memoryState)
-
-  React.useEffect(() => {
-    listeners.push(setState)
-    return () => {
-      const index = listeners.indexOf(setState)
-      if (index > -1) {
-        listeners.splice(index, 1)
-      }
-    }
-  }, [state])
-
-  return {
-    ...state,
-    toast,
-    dismiss: (toastId?: string) => dispatch({ type: "DISMISS_TOAST", toastId }),
-  }
+export interface ToastProps {
+  title?: string
+  description?: string
+  variant?: 'default' | 'destructive'
 }
 
-export { useToast, toast }
+// Simple mock implementation of a toast hook
+export function useToast() {
+  const toast = ({ title, description, variant = 'default' }: ToastProps) => {
+    console.log(`Toast: ${variant}`, { title, description })
+    // In a real implementation, this would show a toast notification
+  }
+
+  return { toast }
+}
