@@ -6,20 +6,8 @@ set -e
 echo "Starting Vercel build process..."
 
 # Vercel automatically runs `pnpm install` based on pnpm-lock.yaml before this script.
-# No need to run `pnpm install` again here unless absolutely necessary.
-# echo "Installing main project dependencies..."
-# pnpm install
-
-# Install specific dependencies if needed (ensure these are not already in package.json)
-# Using pnpm add is generally preferred over install for specific packages during build
-echo "Ensuring specific dependencies are present..."
-# Consider adding these to package.json instead if they are always required
-pnpm add react-intersection-observer@9.16.0 # Updated version from log
-pnpm add @radix-ui/react-separator@1.1.3
-pnpm add @radix-ui/react-tabs@1.1.4
-pnpm add class-variance-authority@0.7.0
-pnpm add clsx@2.1.0
-pnpm add tailwind-merge@2.2.0
+# Dependencies should be correctly installed if listed in package.json.
+# Removing explicit `pnpm add` commands here.
 
 # Create the lib directory if it doesn't exist
 mkdir -p lib
