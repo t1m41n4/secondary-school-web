@@ -7,7 +7,7 @@ interface CardProps {
 }
 
 export function Card({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>
+  return <div className="p-4 shadow-md bg-white">{children}</div>
 }
 
 const CardHeader = React.forwardRef<
