@@ -13,7 +13,7 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-lg mb-4">Keriko Secondary School</h3>
             <p className="text-gray-600 dark:text-gray-400 mb-4">
-              Providing quality education and nurturing talents since 1991.
+              Providing quality education and nurturing talents since 2007
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
@@ -73,6 +73,17 @@ export default function Footer() {
 
         <div className="border-t border-gray-200 dark:border-gray-800 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400">
           <p>&copy; {year} Keriko Secondary School. All rights reserved.</p>
+          <p className="text-[10px] text-gray-500 dark:text-gray-500 mt-2">
+            Designed & Developed by{" "}
+            <a
+              href="https://github.com/t1m41n4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80"
+            >
+              t1m41n4
+            </a>
+          </p>
         </div>
       </div>
     </footer>

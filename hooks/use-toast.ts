@@ -5,7 +5,7 @@ import * as React from "react"
 
 import type {
   ToastActionElement,
-  ToastProps,
+  ToastProps as ImportedToastProps,
 } from "@/components/ui/toast"
 
 const TOAST_LIMIT = 1
@@ -172,8 +172,8 @@ function toast({ ...props }: Toast) {
 }
 
 export interface ToastProps {
-  title?: string
-  description?: string
+  title?: React.ReactNode
+  description?: React.ReactNode
   variant?: 'default' | 'destructive'
 }
 

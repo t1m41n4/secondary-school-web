@@ -1,5 +1,5 @@
-import AboutHero from "@/components/about-hero" // Verify this path and filename case
-import AboutContent from "@/components/about-content" // Verify this path and filename case
+import AboutHero from "@/components/about-hero"
+import AboutContent from "@/components/about-content"
 
 export default function AboutPage() {
   return (
