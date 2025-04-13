@@ -1,13 +1,16 @@
 import React from "react"
 import { cn } from "@/lib/utils"
 
-interface CardProps {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
-  className?: string
 }
 
-export function Card({ children }: { children: React.ReactNode }) {
-  return <div className="p-4 shadow rounded bg-white">{children}</div>
+function Card({ children, className }: CardProps) {
+  return (
+    <div className={cn("border rounded-md p-4 shadow-sm bg-background", className)}>
+      {children}
+    </div>
+  )
 }
 
 const CardHeader = React.forwardRef<
@@ -69,4 +72,4 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = "CardFooter"
 
-export { CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }

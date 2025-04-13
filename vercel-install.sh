@@ -5,9 +5,14 @@ set -e
 
 echo "Starting Vercel build process..."
 
-# Vercel automatically runs `pnpm install` based on pnpm-lock.yaml before this script.
-# Dependencies should be correctly installed if listed in package.json.
-# Removing explicit `pnpm add` commands here.
+# Install specific dependencies that might be missing
+echo "Installing additional dependencies..."
+npm install react-intersection-observer@9.8.0
+npm install @radix-ui/react-separator@1.1.3
+npm install @radix-ui/react-tabs@1.1.4
+npm install class-variance-authority@0.7.0
+npm install clsx@2.1.0
+npm install tailwind-merge@2.2.0
 
 # Create the lib directory if it doesn't exist
 mkdir -p lib
@@ -25,11 +30,8 @@ export function cn(...inputs: ClassValue[]) {
 EOL
 fi
 
-# Ensure UI components directory exists (optional safety check)
-mkdir -p components/ui
-
-# Continue with the regular build using pnpm
+# Continue with the regular build
 echo "Running Next.js build..."
-pnpm run build
+npm run build
 
 echo "Build completed successfully."

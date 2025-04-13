@@ -65,6 +65,7 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
+  output: 'export',
   distDir: process.env.BUILD_DIR || '.next',
 }
 
