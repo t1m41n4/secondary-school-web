@@ -1,8 +1,9 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // Verify path
+import { Button } from "@/components/ui/button"; // Verify path
+import AnimatedBanner from "@/components/animated-banner"; // Verify path
 import Link from "next/link"
 import Image from "next/image"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import AnimatedBanner from "@/components/animated-banner"
+import { CardDescription, CardFooter } from "@/components/ui/card"
 
 // Sample blog data for all posts
 const allArticles = [
