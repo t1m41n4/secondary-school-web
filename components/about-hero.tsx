@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { BookOpen, GraduationCap, Lightbulb, PenTool, School } from "lucide-react"
 
-// Define particle types with their properties (same as in Hero)
+// Define particle types with their properties
 const particleTypes = [
   { icon: BookOpen, color: "#ffffff" },
   { icon: GraduationCap, color: "#ffffff" },

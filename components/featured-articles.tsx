@@ -1,8 +1,10 @@
-import React from "react";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
+"use client"
+
+import React from "react"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+import Image from "next/image"
 
 // Sample blog data
 const articles = [
@@ -33,7 +35,7 @@ const articles = [
     category: "Facilities",
     image: "/images/blog/computer-lab.jpg",
   },
-];
+]
 
 export default function FeaturedArticles() {
   return (
@@ -92,6 +94,6 @@ export default function FeaturedArticles() {
         </div>
       </div>
     </section>
-  );
+  )
 }
 

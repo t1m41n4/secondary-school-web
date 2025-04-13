@@ -1,75 +1,56 @@
 "use client"
 
 import Link from "next/link"
-import { Facebook, Mail, Phone, ArrowUp } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useEffect, useState } from "react"
+import { Facebook, Instagram, Twitter } from "lucide-react"
 
 export default function Footer() {
-  const [showScrollTop, setShowScrollTop] = useState(false)
-
-  // Show scroll to top button when user has scrolled down
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 text-white relative">
-      {/* Scroll to top button */}
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`fixed bottom-4 right-4 bg-primary hover:bg-primary/90 text-white p-2 rounded-full shadow-lg z-40 transition-all ${
-          showScrollTop ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none'
-        }`}
-        aria-label="Scroll to top"
-      >
-        <ArrowUp className="h-5 w-5" />
-      </button>
-
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
-          <div className="space-y-4">
-            <Link href="/" className="flex items-center">
-              <div className="flex flex-col">
-                <span className="text-lg font-semibold tracking-wider text-white">KERIKO</span>
-                <span className="text-xs tracking-[0.3em] -mt-1 text-gray-400">SECONDARY</span>
-              </div>
-            </Link>
-            <div className="flex items-center space-x-2">
-              <Phone className="h-4 w-4 text-primary" />
-              <span className="text-sm">+254103001600</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Mail className="h-4 w-4 text-primary" />
-              <span className="text-sm break-all">communications@kerikosecondary.com</span>
+    <footer className="bg-gray-100 dark:bg-gray-900">
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="font-semibold text-lg mb-4">Keriko Secondary School</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              Providing quality education and nurturing talents since 1991.
+            </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
+                <Facebook className="h-5 w-5" />
+                <span className="sr-only">Facebook</span>
+              </a>
+              <a href="#" className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
+                <Twitter className="h-5 w-5" />
+                <span className="sr-only">Twitter</span>
+              </a>
+              <a href="#" className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
+                <Instagram className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
+              </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">School</h3>
-            <ul className="mt-4 space-y-2">
+            <h3 className="font-semibold text-lg mb-4">Quick Links</h3>
+            <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/about" className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/gallery" className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/blog" className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-sm text-gray-300 hover:text-white transition-colors">
+                <Link href="/contact" className="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-primary transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -77,51 +58,21 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">Follow Us</h3>
-            <div className="mt-4">
-              <a
-                href="https://www.facebook.com/kerikosecondary"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-800 hover:bg-primary transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
+            <h3 className="font-semibold text-lg mb-4">Contact Information</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-2">Nakuru County, Njoro Sub-County, Lare Division</p>
+            <p className="text-gray-600 dark:text-gray-400 mb-2">
+              <a href="tel:+254103001600" className="hover:text-primary transition-colors">+254103001600</a>
+            </p>
+            <p className="text-gray-600 dark:text-gray-400 mb-2">
+              <a href="mailto:communications@kerikosecondary.com" className="hover:text-primary transition-colors">
+                communications@kerikosecondary.com
               </a>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-primary">School Donation</h3>
-            <div className="mt-4">
-              <form action="https://www.paypal.com/donate" method="post" target="_top">
-                <input type="hidden" name="hosted_button_id" value="PWLTT46H3EBT8" />
-                <Button
-                  type="submit"
-                  variant="outline"
-                  className="bg-gray-800 hover:bg-primary text-white border-gray-700"
-                >
-                  Donate Now
-                </Button>
-              </form>
-            </div>
+            </p>
           </div>
         </div>
 
-        <div className="mt-8 sm:mt-12 border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-gray-400 text-center md:text-left">
-              &copy; {new Date().getFullYear()} Keriko Secondary School. All rights reserved.
-            </p>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="mt-4 md:mt-0 text-gray-400 hover:text-white"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            >
-              Back to top
-            </Button>
-          </div>
+        <div className="border-t border-gray-200 dark:border-gray-800 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400">
+          <p>&copy; {year} Keriko Secondary School. All rights reserved.</p>
         </div>
       </div>
     </footer>
