@@ -3,7 +3,12 @@
 # Set strict error handling
 set -e
 
+chmod +x ./vercel-install.sh
+
 echo "Starting Vercel build process..."
+
+echo "Installing main project dependencies..."
+npm install
 
 # Install specific dependencies that might be missing
 echo "Installing additional dependencies..."
