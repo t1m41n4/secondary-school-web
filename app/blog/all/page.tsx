@@ -1,15 +1,11 @@
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import AnimatedBanner from "@/components/animated-banner"
 
-export const metadata = {
-  title: "All Blog Posts | Keriko Secondary School",
-  description: "Browse all news, updates, and articles about Keriko Secondary School",
-}
-
-// Mock blog data - in a real app, this would come from a CMS or database
-const articles = [
+// Sample blog data for all posts
+const allArticles = [
   {
     id: "1",
     title: "Global Teacher Prize Winner",
@@ -39,79 +35,74 @@ const articles = [
   },
   {
     id: "4",
-    title: "Annual Sports Day",
-    excerpt: "Students participate in various sports events and showcase their athletic prowess.",
+    title: "Annual Sports Day Highlights",
+    excerpt: "Recapping the excitement and achievements from our Annual Sports Day competition.",
     slug: "annual-sports-day",
-    date: "October 5, 2023",
-    category: "Events",
+    date: "May 12, 2023",
+    category: "Sports",
     image: "/images/blog/sports-day.jpg",
   },
   {
     id: "5",
-    title: "Teacher Training Workshop",
-    excerpt: "Professional development workshop for teachers to enhance teaching methodologies.",
-    slug: "teacher-training-workshop",
-    date: "November 12, 2023",
-    category: "Professional Development",
-    image: "/images/blog/teacher-workshop.jpg",
+    title: "Community Outreach Program",
+    excerpt: "Our students lead environmental cleanup and tree planting initiatives in neighboring communities.",
+    slug: "community-outreach",
+    date: "April 5, 2023",
+    category: "Community",
+    image: "/images/blog/community.jpg",
   },
   {
     id: "6",
-    title: "Celebrating Exam Success",
-    excerpt: "Recognizing our students' outstanding achievements in national examinations.",
-    slug: "exam-success",
-    date: "January 8, 2024",
-    category: "Achievements",
-    image: "/images/blog/exam-success.jpg",
-  }
+    title: "KCSE Results Improvement",
+    excerpt: "Celebrating our improved performance in the Kenya Certificate of Secondary Education examinations.",
+    slug: "kcse-results",
+    date: "February 28, 2023",
+    category: "Academics",
+    image: "/images/blog/academics.jpg",
+  },
 ];
 
-export default function AllBlogPostsPage() {
+export const metadata = {
+  title: "All Blog Posts | Keriko Secondary School",
+  description: "Browse all news, updates, and articles about Keriko Secondary School",
+}
+
+export default function AllBlogPosts() {
   return (
-    <main className="min-h-screen">
-      <div className="bg-primary text-white py-16">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">All Blog Posts</h1>
-          <p className="text-lg opacity-90 max-w-2xl">
-            Stay updated with the latest news, events, and achievements from Keriko Secondary School.
-          </p>
-        </div>
-      </div>
+    <main>
+      <AnimatedBanner
+        title="All Blog Posts"
+        subtitle="News, events, and stories from our school community"
+      />
 
       <section className="py-12">
         <div className="container mx-auto px-4">
-          <div className="mb-8 flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Latest Articles</h2>
-            <Button asChild variant="outline">
-              <Link href="/blog">Featured Articles</Link>
-            </Button>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((article) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allArticles.map((article) => (
               <Card key={article.id} className="blog-card overflow-hidden">
                 <div className="relative h-48 w-full">
-                  <div className="absolute inset-0 bg-gray-200"></div>
+                  <div className="absolute inset-0 bg-gray-200 animate-pulse"></div>
                   <Image
                     src={article.image || "/placeholder.svg?height=400&width=600&text=Blog+Image"}
                     alt={article.title}
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                   <div className="absolute top-2 right-2 bg-primary text-white text-xs px-2 py-1 rounded-full">
                     {article.category}
                   </div>
                 </div>
                 <CardHeader>
-                  <CardTitle className="text-xl">
+                  <CardTitle>
                     <Link href={`/blog/${article.slug}`} className="hover:text-primary transition-colors">
                       {article.title}
                     </Link>
                   </CardTitle>
-                  <p className="text-sm text-gray-500">{article.date}</p>
+                  <CardDescription>{article.date}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 dark:text-gray-400 line-clamp-3">{article.excerpt}</p>
+                  <p className="text-gray-600 dark:text-gray-400">{article.excerpt}</p>
                 </CardContent>
                 <CardFooter>
                   <Button asChild variant="outline" size="sm">
@@ -121,8 +112,6 @@ export default function AllBlogPostsPage() {
               </Card>
             ))}
           </div>
-
-          {/* Pagination could go here if needed */}
         </div>
       </section>
     </main>
