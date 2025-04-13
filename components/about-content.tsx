@@ -6,7 +6,8 @@ import React from "react"
 export default function AboutContent() {
   return (
     <section>
-      {/* ...your content... */}
+      <h2>About Our School</h2>
+      <p>...some placeholder content...</p>
     </section>
   )
 }
