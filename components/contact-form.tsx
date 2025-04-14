@@ -31,13 +31,13 @@ export default function ContactForm() {
       try {
         toast({
           title: "Message sent!",
-          description: "We'll get back to you as soon as possible.",
+          content: "We'll get back to you as soon as possible.",
         })
         setFormData({ name: "", email: "", message: "" })
       } catch (error) {
         toast({
           title: "Error",
-          description: "There was a problem sending your message. Please try again.",
+          content: "There was a problem sending your message. Please try again.",
           variant: "destructive",
         })
       } finally {
